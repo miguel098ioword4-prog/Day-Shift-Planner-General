@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 28px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  color: #2563eb;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+input, button {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+cat > index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day Shift Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Day Shift Planner</h1>
+    <p>Organize seus turnos e planeje seu dia.</p>
+
+    <form id="shift-form">
+      <label for="shift-name">Nome do turno</label>
+      <input id="shift-name" type="text"
+             placeholder="Ex.: Turno da manhã" required>
+
+      <label for="shift-time">Horário</label>
+      <input id="shift-time" type="time" required>
+
+      <button type="submit">Adicionar turno</button>
+    </form>
+
+    <h2>Meus turnos</h2>
+    <ul id="shift-list"></ul>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
