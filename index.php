@@ -201,8 +201,13 @@ $success = $_GET['success'] ?? null;
 <body>
     <main class="container">
         <header>
-            <h1>Day Shift Planner</h1>
-            <p>Organize seus turnos e planeje seu dia.</p>
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">S</span>
+                <span>shiftly</span>
+            </div>
+            <p class="eyebrow">Organização de rotina</p>
+            <h1>Seu dia, organizado.</h1>
+            <p>Organize seus turnos e tenha uma visão mais clara da sua rotina.</p>
         </header>
 
         <?php if ($error !== null): ?>
