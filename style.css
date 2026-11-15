@@ -289,6 +289,92 @@ footer {
 footer p { margin: 0; }
 footer strong { color: var(--primary); }
 
+/* -- Calendário de atividade (estilo GitHub) ------------------------------- */
+
+.activity { --lv0: #ebedf4; --lv1: #9be9a8; --lv2: #40c463; --lv3: #30a14e; --lv4: #216e39; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px;
+}
+.stats div {
+  padding: 13px 15px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.stats dt { margin: 0 0 4px; color: var(--muted); font-size: 0.76rem; font-weight: 700; }
+.stats dd {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* row-reverse faz a rolagem começar no lado direito: semanas mais recentes. */
+.heatmap-scroll {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 14px 14px 10px;
+  overflow-x: auto;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.heatmap { display: flex; flex: none; gap: 3px; }
+.heatmap-col { display: grid; grid-template-rows: 14px repeat(7, 12px); gap: 3px; }
+.heatmap-month, .heatmap-weekday {
+  color: var(--muted);
+  font-size: 0.66rem;
+  line-height: 12px;
+  white-space: nowrap;
+}
+.heatmap-weekdays { padding-right: 4px; }
+.heatmap-cell { display: block; width: 12px; height: 12px; border-radius: 3px; background: var(--lv0); }
+.heatmap-cell.lv1 { background: var(--lv1); }
+.heatmap-cell.lv2 { background: var(--lv2); }
+.heatmap-cell.lv3 { background: var(--lv3); }
+.heatmap-cell.lv4 { background: var(--lv4); }
+.heatmap-cell.is-future { background: transparent; }
+.heatmap-cell.is-today { outline: 2px solid var(--primary); outline-offset: 1px; }
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+.heatmap-legend span:first-child { margin-right: 4px; }
+.heatmap-legend span:last-child { margin-left: 4px; }
+.hint { margin: 8px 0 0; color: var(--muted); font-size: 0.82rem; line-height: 1.5; }
+
+/* -- Ações de cada turno ---------------------------------------------------- */
+
+.shift-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
+.shift-actions form { display: block; }
+.shift-item.is-done { background: #f3fbf6; border-color: #c8efd9; }
+.shift-item.is-done .shift-info strong { color: var(--muted); text-decoration: line-through; }
+
+button.done-button {
+  min-height: 38px;
+  margin: 0;
+  padding: 8px 12px;
+  color: var(--success);
+  background: var(--success-soft);
+  border: 1px solid #c8efd9;
+  border-radius: 10px;
+  box-shadow: none;
+  font-size: 0.82rem;
+}
+button.done-button:hover { color: #fff; background: var(--success); border-color: var(--success); }
+button.done-button.is-done { color: #fff; background: var(--success); border-color: var(--success); }
+
 @media (min-width: 640px) {
   .container { padding: 42px; }
   header { margin: -42px -42px 36px; padding: 38px 42px 34px; }
@@ -311,8 +397,9 @@ footer strong { color: var(--primary); }
   .brand { margin-bottom: 22px; }
   header h1 { font-size: clamp(1.9rem, 9vw, 2.4rem); }
   section { margin-top: 26px; }
-  .shift-item { align-items: flex-start; padding: 14px; }
-  button.delete-button { padding: 8px 10px; }
+  .shift-item { flex-direction: column; align-items: stretch; padding: 14px; }
+  .shift-actions { justify-content: flex-end; }
+  button.delete-button, button.done-button { padding: 8px 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
